@@ -1,4 +1,5 @@
 import React from 'react';
+import CommonCard from './common-card';
 
 const HeroHome = () => {
   return (
@@ -28,6 +29,7 @@ const HeroHome = () => {
         className="absolute left-1/2 top-1/2 w-96 h-96 -translate-x-1/2 -translate-y-1/2 animate-poke-enter -hover:scale-[1.1]"
         alt=""
       />
+      <CommonCard />
     </button>
   );
 };
