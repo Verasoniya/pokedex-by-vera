@@ -1,5 +1,13 @@
 import { Outlet } from 'react-router';
 import Navbar from '~/components/navbar';
+import type { Route } from './+types/home';
+
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: 'Pokédex by Vera' },
+    { name: 'description', content: 'Welcome to Pokédex!' },
+  ];
+}
 
 function Layout() {
   return (
