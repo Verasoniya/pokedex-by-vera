@@ -1,4 +1,5 @@
 import React from 'react';
+import TypeBadge from './type-badge';
 
 const CommonCard = () => {
   return (
@@ -8,9 +9,8 @@ const CommonCard = () => {
     >
       <p className="text-xs text-primary-yellow font-normal">#0032</p>
       <p className="text-base text-foreground font-semibold mb-2">Nidoran</p>
-      <div className="flex items-center justify-center px-3 py-1 bg-purple-300 rounded-full self-end">
-        <p className="text-purple-800 text-xs font-medium">Poison</p>
-      </div>
+
+      <TypeBadge />
     </div>
   );
 };
