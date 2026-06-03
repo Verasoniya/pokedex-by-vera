@@ -15,6 +15,19 @@
   --color-foreground: #181f19;
   --color-white-foreground: #f8f5ee;
   --color-card: #fbe9c3;
+
+  --animate-poke-enter: poke-enter 0.5s ease-out forwards;
+
+  @keyframes poke-enter {
+    from {
+      opacity: 0;
+      scale: 0.5;
+    }
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
 }
 
 html {
