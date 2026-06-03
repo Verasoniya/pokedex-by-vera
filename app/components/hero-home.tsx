@@ -1,7 +1,8 @@
 import React from 'react';
 import CommonCard from './common-card';
+import type { DataProps } from '~/types/pokemon';
 
-const HeroHome = () => {
+const HeroHome = ({ data }: DataProps) => {
   return (
     <button className="relative cursor-pointer ">
       <img
@@ -24,12 +25,15 @@ const HeroHome = () => {
         alt=""
       />
 
-      <img
-        src="/assets/image/poke.png"
-        className="absolute left-1/2 top-1/2 w-96 h-96 -translate-x-1/2 -translate-y-1/2 animate-poke-enter -hover:scale-[1.1]"
-        alt=""
-      />
-      <CommonCard />
+      {data?.image && (
+        <img
+          src={data?.image}
+          className="absolute left-1/2 top-1/2 w-96 h-96 -translate-x-1/2 -translate-y-1/2 animate-poke-enter -hover:scale-[1.1]"
+          alt={data?.name}
+        />
+      )}
+
+      <CommonCard data={data} />
     </button>
   );
 };

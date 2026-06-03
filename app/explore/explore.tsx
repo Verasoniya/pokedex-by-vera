@@ -1,12 +1,45 @@
 import { Droplets, Heart } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 import HeroHome from '~/components/hero-home';
+import Loading from '~/components/loading';
 import PokeCard from '~/components/poke-card';
 import PokeCircleCard from '~/components/poke-circle-card';
 import SearchInput from '~/components/search';
 import TypeBadge from '~/components/type-badge';
 import TypeBadgeFilter from '~/components/type-badge-filter';
+import { usePokemonList } from '~/hooks/usePokemonList';
 
 export function Explore() {
+  const loadMoreRef = useRef<HTMLDivElement>(null);
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
+    usePokemonList();
+  const pokemon = data?.pages.flatMap((page) => page.results) ?? [];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && hasNextPage && !isFetchingNextPage) {
+          fetchNextPage();
+        }
+      },
+      {
+        threshold: 0.5,
+      },
+    );
+
+    const current = loadMoreRef.current;
+
+    if (current) {
+      observer.observe(current);
+    }
+
+    return () => {
+      if (current) {
+        observer.unobserve(current);
+      }
+    };
+  }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
+
   return (
     <main>
       <section
@@ -23,7 +56,9 @@ export function Explore() {
             Pokémon{' '}
           </p>
           <div className="flex justify-center gap-4 mt-12 mb-9">
-            <PokeCircleCard />
+            {pokemon?.slice(6, 9)?.map((item) => (
+              <PokeCircleCard key={item.id} data={item} />
+            ))}
           </div>
           <SearchInput />
 
@@ -36,9 +71,9 @@ export function Explore() {
             </div>
           </div>
         </div>
-        <HeroHome />
+        {pokemon[4] && <HeroHome data={pokemon[4]} />}
       </section>
-      <section id="explore" className="px-14 py-4 space-y-4">
+      <section id="explore" className="px-2 lg:px-14 py-4 space-y-4">
         <div className="flex justify-between items-center gap-2">
           <h6 className="text-2xl font-semibold text-primary-green">
             All Pokémon
@@ -47,10 +82,23 @@ export function Explore() {
             Sort by Number
           </button>
         </div>
-        <div className="grid grid-cols-4 gap-x-10 gap-y-16 relative">
-          <PokeCard />
-          <PokeCard />
-          <PokeCard />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-16 relative">
+          {pokemon?.map((pokemon) => (
+            <PokeCard key={pokemon.id} data={pokemon} />
+          ))}
+        </div>
+        <div
+          ref={loadMoreRef}
+          className="h-20 mt-10 flex justify-center items-center"
+        >
+          {isLoading || isFetchingNextPage ? <Loading /> : null}
+          {!hasNextPage && !isLoading && (
+            <span className="text-base text-primary-green font-medium flex items-center gap-4">
+              <hr className="w-40 text-secondary-yellow" />
+              You've reached the end of the Pokédex
+              <hr className="w-40 text-secondary-yellow" />
+            </span>
+          )}
         </div>
       </section>
     </main>
