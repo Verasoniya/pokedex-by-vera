@@ -1,5 +1,6 @@
-import { Droplets, Search } from 'lucide-react';
+import { Droplets } from 'lucide-react';
 import PokeCircleCard from '~/components/poke-circle-card';
+import SearchInput from '~/components/search';
 
 export function Explore() {
   return (
@@ -16,15 +17,7 @@ export function Explore() {
         <div className="flex justify-center gap-4 mt-12 mb-9">
           <PokeCircleCard />
         </div>
-        <div className="flex items-center gap-4">
-          <input
-            className="h-9 w-96 py-1 px-4 ring-tertiary-green border border-tertiary-green rounded-full text-primary-green placeholder:text-primary-green text-sm"
-            placeholder="Search Pokémon"
-          />
-          <button className="flex items-center px-4 h-full bg-primary-green rounded-full">
-            <Search className="stroke-white-foreground w-5 h-5" />
-          </button>
-        </div>
+        <SearchInput />
 
         <div className="mt-7">
           <p className="mb-3 font-semibold text-sm text-primary-green">
