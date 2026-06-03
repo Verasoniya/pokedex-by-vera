@@ -31,3 +31,8 @@ export const getPokemonByType = async (type: string) => {
   const { data } = await api.get(`/type/${type}`);
   return data;
 };
+
+export const getTypeList = async () => {
+  const { data } = await api.get('/type?offset=0&limit=21');
+  return data.results;
+};

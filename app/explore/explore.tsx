@@ -8,11 +8,13 @@ import SearchInput from '~/components/search';
 import TypeBadge from '~/components/type-badge';
 import TypeBadgeFilter from '~/components/type-badge-filter';
 import { usePokemonList } from '~/hooks/usePokemonList';
+import { usePokemonTypes } from '~/hooks/usePokemonType';
 
 export function Explore() {
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     usePokemonList();
+  const { data: dataType } = usePokemonTypes();
   const pokemon = data?.pages.flatMap((page) => page.results) ?? [];
 
   useEffect(() => {
@@ -61,26 +63,25 @@ export function Explore() {
             ))}
           </div>
           <SearchInput />
-
-          <div className="mt-7">
-            <p className="mb-3 font-semibold text-sm text-primary-green">
-              Popular Types
-            </p>
-            <div className="flex items-center gap-2">
-              <TypeBadgeFilter />
-            </div>
-          </div>
         </div>
         {pokemon[4] && <HeroHome data={pokemon[4]} />}
       </section>
-      <section id="explore" className="px-2 lg:px-14 py-4 space-y-4">
-        <div className="flex justify-between items-center gap-2">
+      <section id="explore" className="px-2 lg:px-14 py-4 space-y-10">
+        <div className="flex flex-col items-start gap-4">
           <h6 className="text-2xl font-semibold text-primary-green">
             All Pokémon
           </h6>
-          <button className="bg-tertiary-green/20 border border-secondary-green px-3 py-1 text-xs text-primary-green rounded-full">
-            Sort by Number
-          </button>
+          <div className="">
+            <p className="mb-3 font-semibold text-sm text-primary-green">
+              Popular Types
+            </p>
+            <div className="flex flex-wrap items-center gap-2">
+              <TypeBadgeFilter data={{ name: 'All' }} />
+              {dataType?.map((type: any, id: number) => {
+                return <TypeBadgeFilter key={id} data={type} />;
+              })}
+            </div>
+          </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-16 relative">
           {pokemon?.map((pokemon) => (
