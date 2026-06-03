@@ -7,4 +7,13 @@ export default defineConfig({
   resolve: {
     tsconfigPaths: true,
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: `${import.meta.env.VITE_API_TARGET}`,
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '/api/v2'),
+      },
+    },
+  },
 });
