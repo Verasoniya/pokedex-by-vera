@@ -7,16 +7,23 @@
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
   --font-fredoka: 'Fredoka', sans-serif;
-  --font-bricolage: 'Bricolage Grotesque', sans-serif;
+  --font-bricolage: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --color-primary-green: #2f5233;
+  --color-secondary-green: #7bae7f;
+  --color-tertiary-green: #aad0ae;
+  --color-primary-yellow: #c17a00;
+  --color-secondary-yellow: #f4b942;
+  --color-foreground: #181f19;
+  --color-white-foreground: #f8f5ee;
+  --color-card: #fbe9c3;
 }
 
-html,
+html {
+  color-scheme: light;
+}
 body {
   font-family: var(--font-bricolage);
+  color: var(--color-foreground);
 
-  @apply bg-white dark:bg-gray-950;
-
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+  @apply bg-white;
 }
