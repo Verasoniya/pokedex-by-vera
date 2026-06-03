@@ -1,6 +1,7 @@
 import { Droplets } from 'lucide-react';
 import PokeCircleCard from '~/components/poke-circle-card';
 import SearchInput from '~/components/search';
+import TypeBadge from '~/components/type-badge';
 
 export function Explore() {
   return (
@@ -24,10 +25,7 @@ export function Explore() {
             Popular Types
           </p>
           <div className="flex items-center gap-2">
-            <div className="bg-blue-100 text-blue-900 flex items-center gap-1 px-2 py-1 rounded w-fit">
-              <Droplets className="w-3 h-3" size={2} />
-              <p className="text-xs font-medium">Water</p>
-            </div>
+            <TypeBadge />
           </div>
         </div>
       </div>
