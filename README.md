@@ -1,87 +1,145 @@
-# Welcome to React Router!
+# Pokedex by Vera
 
-A modern, production-ready template for building full-stack React applications using React Router.
+Live Demo: https://pokedex-by-vera.vercel.app/
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+A React + TypeScript Pokedex application built using PokeAPI.
+
+## Screenshots
+
+### Home Page
+
+![Home Page](./docs/home.jpeg)
+
+### Pokemon Detail
+
+![Pokemon Detail](./docs/detail.jpeg)
+
+### All Pokémon and Filter by Type
+
+![Filter](./docs/all-pokemon.jpeg)
 
 ## Features
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- Browse Pokémon with infinite scrolling
+- View Pokémon details
+- View Pokémon official artwork
+- Filter Pokémon by type
+- Data fetching and caching with React Query
+- Unit tests for Pokémon services
+
+## Tech Stack
+
+- React 19
+- React Router 7
+- TypeScript
+- React Query
+- Axios
+- Tailwind CSS
+- Vitest
+
+## API
+
+This project uses PokeAPI:
+
+https://pokeapi.co/
 
 ## Getting Started
 
+### Prerequisites
+
+- Node.js 20+
+- npm
+
 ### Installation
 
-Install the dependencies:
+1. Clone repository
+
+```bash
+git clone <repository-url>
+cd pokedex-by-vera
+```
+
+2. Install dependencies
 
 ```bash
 npm install
 ```
 
-### Development
+3. Create environment file
 
-Start the development server with HMR:
+Create `.env` file in project root:
+
+```env
+VITE_API_URL=https://pokeapi.co/api/v2
+```
+
+4. Run development server
 
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+5. Open browser
 
-## Building for Production
+```text
+http://localhost:5173
+```
 
-Create a production build:
+## Available Scripts
+
+### Start Development Server
+
+```bash
+npm run dev
+```
+
+### Build Application
 
 ```bash
 npm run build
 ```
 
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
+### Type Check
 
 ```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
+npm run typecheck
 ```
 
-The containerized application can be deployed to any platform that supports Docker, including:
+### Run Unit Tests
 
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+```bash
+npm run test
 ```
 
-## Styling
+### Run Tests Once
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+```bash
+npm run test:run
+```
 
----
+## Project Structure
 
-Built with ❤️ using React Router.
+```text
+app/
+├── components/
+├── hooks/
+├── routes/
+├── services/
+├── types/
+└── utils/
+```
+
+## Unit Tests
+
+The application includes unit tests for:
+
+- getPokemonList
+- getPokemonDetail
+- getTypeList
+- getPokemonByType
+
+Tests are implemented using Vitest.
+
+## Author
+
+Septi Vera Soniya
