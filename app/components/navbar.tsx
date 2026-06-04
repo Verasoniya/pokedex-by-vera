@@ -13,7 +13,7 @@ const Navbar = () => {
         className="flex items-center gap-2 font-bricolage font-extrabold text-2xl text-primary-green"
       >
         <img
-          src="assets/svg/pokeball-green.svg"
+          src="/assets/svg/pokeball-green.svg"
           alt="pokeball"
           className="w-8 h-8"
         />
@@ -54,7 +54,7 @@ const Navbar = () => {
           );
         })}
         <img
-          src="assets/svg/pokeball-yellow.svg"
+          src="/assets/svg/pokeball-yellow.svg"
           alt="pokeball"
           className="absolute w-32 h-32 -top-12 -left-14 z-0 opacity-35"
         />
@@ -75,7 +75,7 @@ const Navbar = () => {
                 className="flex items-center gap-2 font-bricolage font-extrabold text-2xl text-primary-green"
               >
                 <img
-                  src="assets/svg/pokeball-green.svg"
+                  src="/assets/svg/pokeball-green.svg"
                   alt="pokeball"
                   className="w-8 h-8"
                 />
