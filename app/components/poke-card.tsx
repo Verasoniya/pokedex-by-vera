@@ -25,7 +25,7 @@ const PokeCard = ({ data, onClick }: DataProps) => {
           ))}
         </div>
       </div>
-      <button
+      {/* <button
         id="like-button"
         onClick={(e) => {
           e.stopPropagation();
@@ -34,7 +34,7 @@ const PokeCard = ({ data, onClick }: DataProps) => {
         className="absolute top-2 right-3 cursor-pointer hover:scale-[1.1]"
       >
         <Heart className="fill-red stroke-red" />
-      </button>
+      </button> */}
 
       <img
         src="/assets/svg/pokeball-yellow.svg"

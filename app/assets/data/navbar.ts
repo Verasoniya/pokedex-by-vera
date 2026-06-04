@@ -7,16 +7,16 @@ export const navList = [
     icon_type: 'svg',
     icon: '/assets/svg/pokeball.svg',
   },
-  {
-    name: 'Favorites',
-    href: '/favorites',
-    icon_type: 'lucide',
-    icon: Heart,
-  },
-  {
-    name: 'Types',
-    href: '/types',
-    icon_type: 'lucide',
-    icon: LayoutPanelLeftIcon,
-  },
+  // {
+  //   name: 'Favorites',
+  //   href: '/favorites',
+  //   icon_type: 'lucide',
+  //   icon: Heart,
+  // },
+  // {
+  //   name: 'Types',
+  //   href: '/types',
+  //   icon_type: 'lucide',
+  //   icon: LayoutPanelLeftIcon,
+  // },
 ];

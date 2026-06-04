@@ -89,7 +89,7 @@ export function Explore() {
               <PokeCircleCard key={id} data={item} />
             ))}
           </div>
-          <SearchInput />
+          {/* <SearchInput /> */}
         </div>
         {pokemon[4] && <HeroHome data={pokemon[4]} />}
       </section>
