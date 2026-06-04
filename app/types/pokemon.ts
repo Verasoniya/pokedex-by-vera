@@ -1,5 +1,6 @@
 export type DataProps = {
   data?: any;
+  onClick?: () => void;
 };
 
 export type TypeFilterProps = {

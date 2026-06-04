@@ -1,5 +1,6 @@
 import { Droplets, Heart } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useNavigate } from 'react-router';
 import HeroHome from '~/components/hero-home';
 import Loading from '~/components/loading';
 import PokeCard from '~/components/poke-card';
@@ -12,6 +13,7 @@ import { usePokemonList } from '~/hooks/usePokemonList';
 import { usePokemonTypes } from '~/hooks/usePokemonType';
 
 export function Explore() {
+  const navigate = useNavigate();
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
 
@@ -36,6 +38,10 @@ export function Explore() {
 
   const handleReset = () => {
     setSelectedFilter(null);
+  };
+
+  const handleToDetail = (id: string) => {
+    navigate(`/pokemon/${id}`);
   };
 
   useEffect(() => {
@@ -117,7 +123,11 @@ export function Explore() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-16 relative">
           {pokemon?.map((pokemon: any, id: number) => (
-            <PokeCard key={id} data={pokemon} />
+            <PokeCard
+              key={id}
+              data={pokemon}
+              onClick={() => handleToDetail(pokemon?.id)}
+            />
           ))}
         </div>
         <div
