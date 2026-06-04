@@ -3,12 +3,10 @@ import TypeBadge from './type-badge';
 import { Heart } from 'lucide-react';
 import type { DataProps } from '~/types/pokemon';
 
-const PokeCard = ({ data }: DataProps) => {
+const PokeCard = ({ data, onClick }: DataProps) => {
   return (
     <button
-      onClick={() => {
-        alert('hohoho');
-      }}
+      onClick={onClick}
       className="w-full bg-card h-80 rounded-2xl p-2 flex flex-col cursor-pointer justify-end relative hover:scale-[1.06]"
       style={{
         boxShadow: '0px 0px 4px 0px #F4B942, 0px 4px 0px 0px #F4B942',
@@ -16,7 +14,7 @@ const PokeCard = ({ data }: DataProps) => {
     >
       <div className="w-full bg-white h-2/3 rounded-xl flex flex-col px-2 py-3 items-start justify-end">
         <h6 className="text-xs font-normal text-primary-yellow">
-          #00{data?.id}
+          #{String(data?.id).padStart(3, '0')}
         </h6>
         <h6 className="text-xl font-semibold text-foreground capitalize">
           {data?.name}

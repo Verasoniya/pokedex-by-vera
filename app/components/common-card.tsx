@@ -8,7 +8,9 @@ const CommonCard = ({ data }: DataProps) => {
       className="bg-white px-4 py-3 rounded-2xl absolute right-0 bottom-24 flex flex-col items-start gap-1 w-52"
       style={{ boxShadow: '4px 4px 4px 0px #1F2F2066' }}
     >
-      <p className="text-xs text-primary-yellow font-normal">#00{data?.id}</p>
+      <p className="text-xs text-primary-yellow font-normal">
+        #{String(data?.id).padStart(3, '0')}
+      </p>
       <p className="text-base text-foreground font-semibold mb-2 capitalize">
         {data?.name}
       </p>
