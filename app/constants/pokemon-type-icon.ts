@@ -29,7 +29,7 @@ export const POKEMON_TYPE_ICON: Record<
 > = {
   all: { className: 'bg-teal-200 text-teal-800', icon: Circle },
   normal: {
-    className: 'bg-brown-200 text-brown-800',
+    className: 'bg-gray-200 text-gray-800',
     icon: Shield,
   },
   fire: {

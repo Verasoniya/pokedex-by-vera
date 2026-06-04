@@ -1,5 +1,5 @@
 import { Droplets, Heart } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import HeroHome from '~/components/hero-home';
 import Loading from '~/components/loading';
 import PokeCard from '~/components/poke-card';
@@ -7,15 +7,36 @@ import PokeCircleCard from '~/components/poke-circle-card';
 import SearchInput from '~/components/search';
 import TypeBadge from '~/components/type-badge';
 import TypeBadgeFilter from '~/components/type-badge-filter';
+import { usePokemonByType } from '~/hooks/usePokemonByType';
 import { usePokemonList } from '~/hooks/usePokemonList';
 import { usePokemonTypes } from '~/hooks/usePokemonType';
 
 export function Explore() {
   const loadMoreRef = useRef<HTMLDivElement>(null);
+  const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     usePokemonList();
   const { data: dataType } = usePokemonTypes();
-  const pokemon = data?.pages.flatMap((page) => page.results) ?? [];
+  const { data: filteredData, isLoading: isFiltering } = usePokemonByType(
+    selectedFilter ?? '',
+  );
+  // const pokemon = data?.pages.flatMap((page) => page.results) ?? [];
+
+  const pokemon = useMemo(() => {
+    if (selectedFilter && selectedFilter !== 'All') {
+      return filteredData ?? [];
+    }
+    return data?.pages.flatMap((page) => page.results) ?? [];
+  }, [selectedFilter, filteredData, data]);
+
+  const handleSelectFilter = (type: string) => {
+    setSelectedFilter(type);
+  };
+
+  const handleReset = () => {
+    setSelectedFilter(null);
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -58,8 +79,8 @@ export function Explore() {
             Pokémon{' '}
           </p>
           <div className="flex justify-center gap-4 mt-12 mb-9">
-            {pokemon?.slice(6, 9)?.map((item) => (
-              <PokeCircleCard key={item.id} data={item} />
+            {pokemon?.slice(6, 9)?.map((item: any, id: number) => (
+              <PokeCircleCard key={id} data={item} />
             ))}
           </div>
           <SearchInput />
@@ -68,24 +89,35 @@ export function Explore() {
       </section>
       <section id="explore" className="px-2 lg:px-14 py-4 space-y-10">
         <div className="flex flex-col items-start gap-4">
-          <h6 className="text-2xl font-semibold text-primary-green">
-            All Pokémon
+          <h6 className="text-2xl font-semibold text-primary-green capitalize">
+            {selectedFilter ? selectedFilter : 'All'} Pokémon
           </h6>
           <div className="">
             <p className="mb-3 font-semibold text-sm text-primary-green">
               Popular Types
             </p>
             <div className="flex flex-wrap items-center gap-2">
-              <TypeBadgeFilter data={{ name: 'All' }} />
+              <TypeBadgeFilter
+                data={{ name: 'All' }}
+                onClick={handleReset}
+                selected={selectedFilter === null}
+              />
               {dataType?.map((type: any, id: number) => {
-                return <TypeBadgeFilter key={id} data={type} />;
+                return (
+                  <TypeBadgeFilter
+                    key={id}
+                    data={type}
+                    onClick={() => handleSelectFilter(type.name)}
+                    selected={selectedFilter === type.name}
+                  />
+                );
               })}
             </div>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-16 relative">
-          {pokemon?.map((pokemon) => (
-            <PokeCard key={pokemon.id} data={pokemon} />
+          {pokemon?.map((pokemon: any, id: number) => (
+            <PokeCard key={id} data={pokemon} />
           ))}
         </div>
         <div
