@@ -29,8 +29,6 @@ const PokemonDetail = () => {
     navigate('/', { replace: true });
   };
 
-  console.log('evvv dataaa', evolutions);
-
   return (
     <main className="px-4 lg:px-10 py-6 space-y-10">
       <section className="flex flex-col lg:flex-row gap-10 items-center ">

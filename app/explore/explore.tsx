@@ -85,14 +85,33 @@ export function Explore() {
             Pokémon{' '}
           </p>
           <div className="flex justify-center items-center lg:items-start w-full lg:w-auto gap-4 mt-12 mb-9">
-            {pokemon?.slice(6, 9)?.map((item: any, id: number) => (
-              <PokeCircleCard key={id} data={item} />
-            ))}
+            {isLoading ? (
+              <Loading />
+            ) : (
+              pokemon
+                ?.slice(6, 9)
+                ?.map((item: any, id: number) => (
+                  <PokeCircleCard
+                    key={id}
+                    data={item}
+                    onClick={() => handleToDetail(item?.id)}
+                  />
+                ))
+            )}
           </div>
           {/* <SearchInput /> */}
         </div>
         <div className="order-1 lg:order-2 lg:place-self-center">
-          {pokemon[4] && <HeroHome data={pokemon[4]} />}
+          {isLoading ? (
+            <Loading />
+          ) : (
+            pokemon[4] && (
+              <HeroHome
+                data={pokemon[4]}
+                onClick={() => handleToDetail(pokemon[4]?.id)}
+              />
+            )
+          )}
         </div>
       </section>
       <section id="explore" className="px-2 lg:px-14 py-4 space-y-10">

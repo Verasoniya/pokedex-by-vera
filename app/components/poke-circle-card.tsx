@@ -1,9 +1,12 @@
 import React from 'react';
 import type { DataProps } from '~/types/pokemon';
 
-const PokeCircleCard = ({ data }: DataProps) => {
+const PokeCircleCard = ({ data, onClick }: DataProps) => {
   return (
-    <button className="w-24 h-24 relative hover:scale-[1.1] cursor-pointer">
+    <button
+      className="w-24 h-24 relative hover:scale-[1.1] cursor-pointer"
+      onClick={onClick}
+    >
       <div className="absolute left-1/2 top-1/2 w-12 h-12 -translate-x-1/2 -translate-y-1/2 rounded-full bg-secondary-yellow" />
       <img
         src="/assets/svg/gap-circle.svg"

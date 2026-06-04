@@ -15,8 +15,6 @@ export default function EvolutionChain({ evolutions }: Props) {
   return (
     <div className="flex items-center gap-4 overflow-x-auto">
       {evolutions.map((pokemon, index) => {
-        console.log('evolutionsss', pokemon, evolutions);
-
         const id = pokemon.id;
 
         return (
