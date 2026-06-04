@@ -54,7 +54,6 @@ export const getPokemonSpecies = async (id: string) => {
 
 export const getEvolutionChain = async (url: string) => {
   const { data } = await api.get(url);
-  console.log('evolution data', data);
 
   return data;
 };
