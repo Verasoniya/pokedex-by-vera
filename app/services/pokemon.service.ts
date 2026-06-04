@@ -50,3 +50,15 @@ export const getTypeList = async () => {
   const { data } = await api.get('/type?offset=0&limit=21');
   return data.results;
 };
+
+export const getPokemonSpecies = async (id: string) => {
+  const { data } = await api.get(`/pokemon-species/${id}`);
+  return data;
+};
+
+export const getEvolutionChain = async (url: string) => {
+  const { data } = await api.get(url);
+  console.log('evolution data', data);
+
+  return data;
+};
