@@ -84,14 +84,14 @@ export function Explore() {
             <span className="text-secondary-yellow">1300+</span> amazing
             Pokémon{' '}
           </p>
-          <div className="flex justify-center gap-4 mt-12 mb-9">
+          <div className="flex justify-center items-center lg:items-start w-full lg:w-auto gap-4 mt-12 mb-9">
             {pokemon?.slice(6, 9)?.map((item: any, id: number) => (
               <PokeCircleCard key={id} data={item} />
             ))}
           </div>
           {/* <SearchInput /> */}
         </div>
-        <div className="order-1 lg:order-2">
+        <div className="order-1 lg:order-2 lg:place-self-center">
           {pokemon[4] && <HeroHome data={pokemon[4]} />}
         </div>
       </section>
@@ -123,7 +123,7 @@ export function Explore() {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-16 relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-10 lg:gap-y-16 relative">
           {pokemon?.map((pokemon: any, id: number) => (
             <PokeCard
               key={id}

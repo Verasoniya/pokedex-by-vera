@@ -4,7 +4,7 @@ import type { DataProps } from '~/types/pokemon';
 
 const HeroHome = ({ data }: DataProps) => {
   return (
-    <button className="relative cursor-pointer w-full h-full mt-12 lg:mt-0">
+    <button className="relative cursor-pointer w-full lg:w-120 h-96 lg:h-120 mt-2 lg:mt-0">
       <img
         style={{ imageRendering: 'auto' }}
         src="/assets/svg/gap-circle-green-2.svg"
