@@ -73,7 +73,7 @@ export function Explore() {
     <main>
       <section
         id="hero"
-        className="grid grid-cols-1 min-h-[calc(100vh-180px)] lg:grid-cols-2 gap-16"
+        className="grid grid-cols-1 min-h-[calc(100vh-180px)] lg:grid-cols-2 gap-16 px-4 lg:px-10"
       >
         <div className="order-2 lg:order-1 flex-1 flex flex-col items-start justify-center ">
           <h1 className="font-bricolage font-extrabold text-6xl lg:text-8xl text-primary-green">

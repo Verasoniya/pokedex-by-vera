@@ -1,5 +1,6 @@
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import React from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useNavigation, useParams, useRoutes } from 'react-router';
 import EvolutionChain from '~/components/evolution-chain';
 import Loading from '~/components/loading';
 import StatsBar from '~/components/stats-bar';
@@ -10,6 +11,7 @@ import { usePokemonSpecies } from '~/hooks/usePokemonSpecies';
 import { parseEvolutionChain } from '~/utils/evolution-chain';
 
 const PokemonDetail = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const { data, isLoading } = usePokemonDetail(id);
@@ -23,11 +25,22 @@ const PokemonDetail = () => {
     ? parseEvolutionChain(evolutionData.chain)
     : [];
 
+  const handleBack = () => {
+    navigate('/', { replace: true });
+  };
+
   console.log('evvv dataaa', evolutions);
 
   return (
-    <main className="px-10 py-6 space-y-10">
-      <section className="flex gap-10 items-center">
+    <main className="px-4 lg:px-10 py-6 space-y-10">
+      <section className="flex flex-col lg:flex-row gap-10 items-center ">
+        <button
+          onClick={handleBack}
+          className="flex items-center self-start text-sm font-medium gap-1 bg-secondary-yellow/10 border border-secondary-yellow px-3 py-1 rounded-full cursor-pointer hover:scale-[1.05]"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Back
+        </button>
         <div className="relative">
           <img
             src="/assets/svg/pokeball-line.svg"
@@ -42,7 +55,7 @@ const PokemonDetail = () => {
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-10 flex-1">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 flex-1 w-full lg:w-auto">
           <div className="">
             <h1 className="text-4xl font-bold font-bricolage capitalize">
               {data?.name || ''}
@@ -95,13 +108,13 @@ const PokemonDetail = () => {
         </div>
       </section>
 
-      <section className="grid grid-cols-2 gap-10">
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 w-full">
         {isEvolutionLoading ? (
           <Loading />
         ) : (
           <div>
             <h2 className="text-xl font-semibold mb-4">Evolution Chain</h2>
-            <div className="py-4 px-6 rounded-2xl border-2 border-secondary-yellow flex items-center justify-center">
+            <div className="py-2 px-3 lg:py-4 lg:px-6 rounded-2xl border-2 border-secondary-yellow flex items-center justify-center">
               <EvolutionChain evolutions={evolutions} />
             </div>
           </div>
