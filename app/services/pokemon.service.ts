@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_PROXY,
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 export const getPokemonList = async (offset = 0, limit = 20) => {
