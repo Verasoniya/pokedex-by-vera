@@ -73,13 +73,13 @@ export function Explore() {
     <main>
       <section
         id="hero"
-        className="grid min-h-[calc(100vh-180px)] grid-cols-2 gap-16"
+        className="grid grid-cols-1 min-h-[calc(100vh-180px)] lg:grid-cols-2 gap-16"
       >
-        <div className="flex-1 flex flex-col items-start justify-center ">
-          <h1 className="font-bricolage font-extrabold text-8xl text-primary-green">
+        <div className="order-2 lg:order-1 flex-1 flex flex-col items-start justify-center ">
+          <h1 className="font-bricolage font-extrabold text-6xl lg:text-8xl text-primary-green">
             Poké<span className="text-secondary-yellow">dex</span>
           </h1>
-          <p className="font-medium text-xl w-1/2">
+          <p className="font-medium text-base lg:text-xl w-2/3 lg:w-1/2">
             Discover, explore, collect{' '}
             <span className="text-secondary-yellow">1300+</span> amazing
             Pokémon{' '}
@@ -91,7 +91,9 @@ export function Explore() {
           </div>
           {/* <SearchInput /> */}
         </div>
-        {pokemon[4] && <HeroHome data={pokemon[4]} />}
+        <div className="order-1 lg:order-2">
+          {pokemon[4] && <HeroHome data={pokemon[4]} />}
+        </div>
       </section>
       <section id="explore" className="px-2 lg:px-14 py-4 space-y-10">
         <div className="flex flex-col items-start gap-4">
